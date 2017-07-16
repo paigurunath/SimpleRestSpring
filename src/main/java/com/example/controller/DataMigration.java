@@ -126,6 +126,31 @@ public class DataMigration {
 		return "SUCCESS";
 	}
 	
+	@RequestMapping(value="/gyro", method=RequestMethod.POST)
+	public String saveGyroData(@RequestBody String jsonNode ) {
+		try {
+//	        
+//			Object things = new Gson().fromJson(responseStr, Object.class);
+//		    List keys = new ArrayList();
+//		    collectAllTheKeys(keys, things);
+//		    
+//		    Iterator iter1 = keys.listIterator();
+//		    
+//		    while(iter1.hasNext()) {
+//		    	System.out.println(iter1.next());
+//		    }
+//		    System.out.println("all done and executed");
+			System.out.println("value from sensor : " + jsonNode);
+//		    return "completed success";
+		} catch(com.google.gson.JsonParseException e) {
+			e.printStackTrace();
+			return "String parsing failed";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SUCCESS";
+	}
 	
 	void collectAllTheKeys(List keys, Object o)
 	  {
