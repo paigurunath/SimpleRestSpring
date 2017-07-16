@@ -1,32 +1,19 @@
 package com.example.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import org.json.JSONArray;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.predix.dao.TableDataOperations;
-import com.sendgrid.Content;
-import com.sendgrid.Email;
-import com.sendgrid.Mail;
-import com.sendgrid.Method;
-import com.sendgrid.Request;
-import com.sendgrid.Response;
-import com.sendgrid.SendGrid;
 
 @RestController
 @EnableAutoConfiguration
@@ -111,6 +98,15 @@ public class DataMigration {
 		return "SUCCESS";
 	}
 	
+	@RequestMapping(value="/getGyroAccel", method=RequestMethod.GET)
+	public @ResponseBody String getAccelGyroData() {
+		try {
+			return tdo.mergeAccelGyro().toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 //	@RequestMapping(value="/readUrlString", method=RequestMethod.POST)
 //	public String readUrlString(@RequestBody String jsonNode ) {
 //		try {

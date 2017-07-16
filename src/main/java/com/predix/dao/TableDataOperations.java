@@ -120,24 +120,24 @@ public class TableDataOperations {
  		}
  		return null;
  	}
-	public static void main(String args[]) {
-		
-		TableDataOperations tdo = new TableDataOperations();
-		
-		//tdo.createTable();
-		HashMap<Integer, String> hm = new HashMap<Integer, String>();
-		
-		hm.put(new Integer(1), "3.253813693");
-		hm.put(new Integer(2), "3.2358969");
-		hm.put(new Integer(3), "3.258963");
-		hm.put(new Integer(4), new Timestamp(new Date().getTime()).toString());
-		//hm.put(new Integer(5), "1");
-		
-		
-		for(int i=0; i<4; i++)
-		//tdo.insertGyro(hm);
-		//tdo.viewData();
-			System.out.println(tdo.mergeAccelGyro());
-		
-	}
+//	public static void main(String args[]) {
+//		
+//		TableDataOperations tdo = new TableDataOperations();
+//		
+//		//tdo.createTable();
+//		HashMap<Integer, String> hm = new HashMap<Integer, String>();
+//		
+//		hm.put(new Integer(1), "3.253813693");
+//		hm.put(new Integer(2), "3.2358969");
+//		hm.put(new Integer(3), "3.258963");
+//		hm.put(new Integer(4), new Timestamp(new Date().getTime()).toString());
+//		//hm.put(new Integer(5), "1");
+//		
+//		
+//		for(int i=0; i<4; i++)
+//		//tdo.insertGyro(hm);
+//		//tdo.viewData();
+//			System.out.println(tdo.mergeAccelGyro());
+//		
+//	}
 }

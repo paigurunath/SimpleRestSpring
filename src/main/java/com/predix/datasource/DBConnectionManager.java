@@ -67,9 +67,9 @@ public final class DBConnectionManager {
         return db;
  
     }
-	public static void main(String args[]) {
-//		DBConnectionManager dbc = new DBConnectionManager();
-//		dbc.getConnection();
-		System.out.println(DBConnectionManager.getDbCon());
-	}
+//	public static void main(String args[]) {
+////		DBConnectionManager dbc = new DBConnectionManager();
+////		dbc.getConnection();
+//		System.out.println(DBConnectionManager.getDbCon());
+//	}
 }
