@@ -98,6 +98,46 @@ public class DataMigration {
 		return "SUCCESS";
 	}
 	
+	@RequestMapping(value="/saveLatLong", method=RequestMethod.POST)
+	public String saveLatLong(@RequestBody JsonNode jsonNode ) {
+		try {
+			System.out.println("lat long : " + jsonNode);
+			HashMap<Integer, String> hm = new HashMap<Integer, String>();
+			hm.put(new Integer(1), jsonNode.get("latval").toString());
+			hm.put(new Integer(2), jsonNode.get("longval").toString());
+			hm.put(new Integer(3), new Timestamp(new Date().getTime()).toString());
+			tdo.saveLatlong(hm);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "SUCCESS";
+	}
+	
+	@RequestMapping(value="/getLatLong", method=RequestMethod.GET)
+	public @ResponseBody String getLatLong() {
+		try {
+			return tdo.getLatLongVal().toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@RequestMapping(value="/getLatLongMultiple", method=RequestMethod.POST)
+	public @ResponseBody String getLatLongMultiple(@RequestBody JsonNode jsonNode) {
+		try {
+			System.out.println("lat long : " + jsonNode);
+			HashMap<Integer, String> hm = new HashMap<Integer, String>();
+			hm.put(new Integer(1), jsonNode.get("limit").toString());
+			
+			return tdo.getLatLongVal().toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	@RequestMapping(value="/getGyroAccel", method=RequestMethod.GET)
 	public @ResponseBody String getAccelGyroData() {
 		try {

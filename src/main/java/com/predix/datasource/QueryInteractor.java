@@ -133,88 +133,89 @@ public class QueryInteractor {
 	}
 	
 	
-//	public ArrayList getArrayListOnCondition(String pQryStmt, HashMap valueMap) {
-//
-//		ArrayList lo_ResAList = new ArrayList();
-//		ResultSet lo_ResultSet1      = null;
-//		PreparedStatement lo_PrepareStmt1 = null;
-//		PreparedStatement lo_PrepareStmt2 = null;
-//		logger.debug("inside getArrayList() ");
-//		logger.debug("Query String "+pQryStmt);
-//		Connection moDbConn=null;
-//		PreparedStatement lo_PrepareStmt = null;
-//		try {
-//
-//			moDbConn = manager.getConnection();
-//
-//			//moDbConn.setAutoCommit(false);
-//
-//			lo_PrepareStmt1 = moDbConn.prepareStatement(pQryStmt);
-//			
-//
-//			if(valueMap != null )
-//			{
-//				for (Iterator itr = valueMap.keySet().iterator(); itr.hasNext(); ) {
-//					Object key = itr.next();
-//					if (key instanceof Integer) {
-//						logger.info("HashMap key for the query="+ key.toString());
-//						Object value = valueMap.get(key);
-//						lo_PrepareStmt1.setObject(((Integer) key).intValue(), value);
-//						logger.debug("HashMap Value for the query "+value.toString());
-//					}
-//				}
-//				logger.debug("Hash MAp Retrieved");
-//			}
-//			logger.debug("Query String Before execute "+pQryStmt);
-//			ResultSet rs = lo_PrepareStmt1.executeQuery();
-//			logger.debug("The value of flag = " + flag);
-//			if(rs != null)
-//			{
-//				Object[] listMetaObj = null;
-//				ResultSetMetaData lo_RsMeta      = null;
-//				int lo_ColCount     = 0;
-//				int l_RowCount      = 0;
-//				int i=0;
-//
-//				lo_ResultSet1     = lo_PrepareStmt1.getResultSet();
-//				lo_RsMeta        = lo_ResultSet1.getMetaData();
-//				lo_ColCount      = lo_RsMeta.getColumnCount();
-//
-//				// Getting Meta Data for the Query
-//				listMetaObj = new Object[lo_ColCount];
-//				for ( i=0; i<lo_ColCount ; i++)	{
-//					listMetaObj[i] = lo_RsMeta.getColumnLabel(i+1);
-//				}
-//				lo_ResAList.add(l_RowCount++, listMetaObj.toString());
-//
-//				// Getting DataPart
-//				while (lo_ResultSet1.next())	{
-//					Object[] listColumnObj = new Object[lo_ColCount];
-//					for ( i=0; i<lo_ColCount; i++ )   {
-//						listColumnObj[i] = lo_ResultSet1.getObject(i+1);
-//						//               logger.debug("Resuleset Value"+listColumnObj[i].toString());
-//					}
-//					lo_ResAList.add(l_RowCount++, listColumnObj);
-//				}
-//				logger.debug("Fetch from database");
-//			}
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//			logger.fatal("Failed to fetch from database");
-//		}
-//		finally
-//		{
-//
-//			DBUtility.closeResultSet(lo_ResultSet1);
-//			DBUtility.closePreparedStatement(lo_PrepareStmt1);
-//			DBUtility.closeConnection(moDbConn);
-//
-//
-//		}
-//		return lo_ResAList;
-//	}
+	public ArrayList getArrayListOnCondition(String pQryStmt, HashMap valueMap) {
+
+		ArrayList lo_ResAList = new ArrayList();
+		ResultSet lo_ResultSet1      = null;
+		PreparedStatement lo_PrepareStmt1 = null;
+		PreparedStatement lo_PrepareStmt2 = null;
+		logger.debug("inside getArrayList() ");
+		logger.debug("Query String "+pQryStmt);
+		DBConnectionManager moDbConn=null;
+		Connection conlocal=null;
+		PreparedStatement lo_PrepareStmt = null;
+		try {
+
+			moDbConn = DBConnectionManager.getDbCon();
+			conlocal = moDbConn.conn;
+			//moDbConn.setAutoCommit(false);
+
+			lo_PrepareStmt1 = conlocal.prepareStatement(pQryStmt);
+			
+
+			if(valueMap != null )
+			{
+				for (Iterator itr = valueMap.keySet().iterator(); itr.hasNext(); ) {
+					Object key = itr.next();
+					if (key instanceof Integer) {
+						logger.info("HashMap key for the query="+ key.toString());
+						Object value = valueMap.get(key);
+						lo_PrepareStmt1.setObject(((Integer) key).intValue(), value);
+						logger.debug("HashMap Value for the query "+value.toString());
+					}
+				}
+				logger.debug("Hash MAp Retrieved");
+			}
+			logger.debug("Query String Before execute "+pQryStmt);
+			ResultSet rs = lo_PrepareStmt1.executeQuery();
+			logger.debug("The value of flag = " + flag);
+			if(rs != null)
+			{
+				Object[] listMetaObj = null;
+				ResultSetMetaData lo_RsMeta      = null;
+				int lo_ColCount     = 0;
+				int l_RowCount      = 0;
+				int i=0;
+
+				lo_ResultSet1     = lo_PrepareStmt1.getResultSet();
+				lo_RsMeta        = lo_ResultSet1.getMetaData();
+				lo_ColCount      = lo_RsMeta.getColumnCount();
+
+				// Getting Meta Data for the Query
+				listMetaObj = new Object[lo_ColCount];
+				for ( i=0; i<lo_ColCount ; i++)	{
+					listMetaObj[i] = lo_RsMeta.getColumnLabel(i+1);
+				}
+				lo_ResAList.add(l_RowCount++, listMetaObj.toString());
+
+				// Getting DataPart
+				while (lo_ResultSet1.next())	{
+					Object[] listColumnObj = new Object[lo_ColCount];
+					for ( i=0; i<lo_ColCount; i++ )   {
+						listColumnObj[i] = lo_ResultSet1.getObject(i+1);
+						//               logger.debug("Resuleset Value"+listColumnObj[i].toString());
+					}
+					lo_ResAList.add(l_RowCount++, listColumnObj);
+				}
+				logger.debug("Fetch from database");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			logger.fatal("Failed to fetch from database");
+		}
+		finally
+		{
+
+			DBUtility.closeResultSet(lo_ResultSet1);
+			DBUtility.closePreparedStatement(lo_PrepareStmt1);
+			//DBUtility.closeConnection(moDbConn);
+
+
+		}
+		return lo_ResAList;
+	}
 	public ArrayList getList(String pQryStmt) {
 
 		ArrayList lo_ResAList = new ArrayList();
