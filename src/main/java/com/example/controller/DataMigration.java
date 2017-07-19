@@ -133,7 +133,7 @@ public class DataMigration {
 			HashMap<Integer, String> hm = new HashMap<Integer, String>();
 			hm.put(new Integer(1), jsonNode.get("limit").toString());
 			
-			return tdo.getLatLongVal().toString();
+			return tdo.getLatLongValMultiple(hm).toString();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

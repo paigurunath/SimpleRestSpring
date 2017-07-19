@@ -101,7 +101,7 @@ public class TableDataOperations {
  	public JSONArray getLatLongValMultiple(HashMap values) {
  		try {
  			qi = new QueryInteractor();
- 			List<Object> listObject = qi.getArrayListOnCondition(Query.VIEW_LAT_LONG_MULTIPLE, values);
+ 			List<Object> listObject = qi.getArrayListOnIn(Query.VIEW_LAT_LONG_MULTIPLE, values);
  			
  			int listSize = listObject.size();
  			
