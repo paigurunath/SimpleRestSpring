@@ -56,6 +56,19 @@ public class TableDataOperations {
  		return null;
  	}
  	
+ 	public String saveLatlong(HashMap values) {
+ 		
+ 		try {
+ 			qi = new QueryInteractor();
+ 			qi.getArrayList(Query.INSERT_LAT_LONG, values);
+ 			
+ 			return "SUCCESS";
+ 		} catch(Exception e) {
+ 			e.printStackTrace();
+ 		}
+ 		return null;
+ 	}
+
  	public String updateDataTable(HashMap values) {
  		
  		try {
@@ -85,6 +98,52 @@ public class TableDataOperations {
  		return null;
  	}
  	
+ 	public JSONArray getLatLongValMultiple(HashMap values) {
+ 		try {
+ 			qi = new QueryInteractor();
+ 			List<Object> listObject = qi.getArrayListOnCondition(Query.VIEW_LAT_LONG_MULTIPLE, values);
+ 			
+ 			int listSize = listObject.size();
+ 			
+ 			JSONArray jsonarray = new JSONArray();
+ 			JSONArray jsonarraySub;
+ 			for(int k=1; k<listSize; k++) {
+ 				jsonarraySub = new JSONArray();
+ 				 
+ 				Object[] obj = (Object[])listObject.get(k);
+ 				jsonarraySub.put(new Double(obj[0].toString()));
+ 				jsonarraySub.put(new Double(obj[1].toString()));
+ 				
+ 				jsonarray.put(jsonarraySub);
+ 				
+ 			}
+ 			return jsonarray;
+ 			
+ 		} catch(Exception e) {
+ 			e.printStackTrace();
+ 		}
+ 		return null;
+ 	}
+		
+ 	public JSONArray getLatLongVal() {
+ 		
+ 		try {
+ 			JSONArray jsonarray = new JSONArray();
+ 			qi = new QueryInteractor();
+ 			List<Object> listObjectGyro = qi.getList(Query.VIEW_LAT_LONG);
+ 			
+ 			Object[] obj = (Object[])listObjectGyro.get(1);
+ 			jsonarray.put(new Double(obj[0].toString()));
+ 			jsonarray.put(new Double(obj[1].toString()));
+ 			
+ 			return jsonarray;
+ 			
+ 		} catch(Exception e) {
+ 			e.printStackTrace();
+ 		}
+ 		return null;
+ 	}
+
  	public JSONArray mergeAccelGyro() {
  		
  		try {
