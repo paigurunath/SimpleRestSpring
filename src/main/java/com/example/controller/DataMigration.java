@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.predix.dao.TableDataOperations;
 
+@CrossOrigin
 @RestController
 @EnableAutoConfiguration
 public class DataMigration {
