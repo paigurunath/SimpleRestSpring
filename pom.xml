@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>SearchDataMigration</artifactId>
+	<groupId>com.bleconnect</groupId>
+	<artifactId>BleConnect</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>SearchDataMigration</name>
-	<description>Demo project for to migrate data from one search engine to another using spring boot</description>
+	<name>BleConnect</name>
+	<description>Spring boot app to save data from arduino101 and GPS module</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -47,22 +47,11 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>5.1.6</version>
-</dependency>
-		
-
-<!-- https://mvnrepository.com/artifact/com.sendgrid/sendgrid-java -->
-<dependency>
-    <groupId>com.sendgrid</groupId>
-    <artifactId>sendgrid-java</artifactId>
-    <version>3.1.0</version>
-</dependency>
-
-
-
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.6</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.json</groupId>

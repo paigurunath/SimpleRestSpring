@@ -1,5 +1,7 @@
-com/predix/datasource/DBUtility.class
-com/predix/datasource/QueryInteractor.class
-com/predix/datasource/Query.class
-com/predix/dao/TableDataOperations.class
-com/predix/datasource/DBConnectionManager.class
+com/bleconnect/controller/BLEController.class
+com/bleconnect/datasource/QueryInteractor.class
+com/bleconnect/datasource/DBConnectionManager.class
+com/bleconnect/datasource/DBUtility.class
+com/bleconnect/SpringBootApp.class
+com/bleconnect/dao/BLEDao.class
+com/bleconnect/datasource/Query.class
